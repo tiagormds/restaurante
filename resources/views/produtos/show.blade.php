@@ -1,23 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Produtos - {{ $produto->titulo }}</title>
-</head>
-<body>
-<h1>Produtos - {{ $produto->titulo }}</h1>
+@extends('layout.app')
+@section('title', $produto->titulo)
+@section('content')
+    <h1>Produtos - {{ $produto->titulo }}</h1>
 
-<ul>
-    <li>SKU: {{ $produto->sku }}</li>
-    <li>Preço: {{ $produto->preco }}</li>
-    <li>Adicionado em: {{ $produto->create_at}}</li>
-</ul>
+    <div class="row">
+        @if(file_exists("./img/produtos/".md5($produto->id).".jpg"))
+        <div class="col-md-6">
+            <img src="{{ url('img/produtos/'.md5($produto->id).'.jpg') }}" alt="Imagem Produto" class="img-fluid img-thumbnail">
+        </div>
+        @endif
+        <div class="col-md-6">
+            <ul>
+                <li><strong>SKU: </strong> {{ $produto->sku }}</li>
+                <li><strong>Preço: </strong>R$ {{ number_format($produto->preco, 2, ',','.') }}</li>
+                <li><strong>Adicionado em: </strong> {{ date("d/m/Y", strtotime($produto->created_at))}}</li>
+            </ul>
 
-<p>{{ $produto->descricao }}</p>
-<a href="javascript:history.go(-1)">Voltar</a>
+            <p>{{ $produto->descricao }}</p>
+        </div>
+    </div>
 
-</body>
-</html>
+    <a href="javascript:history.go(-1)">Voltar</a>
+@endsection

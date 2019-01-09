@@ -8,12 +8,14 @@
             <form method="POST" action="{{ route('produtos.buscar') }}">
                 {{ csrf_field() }}
 
-                <div class="input-group col-md-10">
-                    <input class="form-control" type="text" name="buscar" id="buscar"
-                           placeholder="Procurar Produto no site..." value=" @if(isset($buscaInput)) {{$buscaInput}} @endif">
+                <div class="input-group col-md-12">
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" name="buscar" id="buscar"
+                               placeholder="Procurar Produto no site..." value=" @if(isset($buscaInput)) {{$buscaInput}} @endif">
+                    </div>
 
-                    <div class="input-group-addon col-md-2">
-                        <button class="btn btn-outline-secondary">Buscar</button>
+                    <div class="col-md-2">
+                        <button class="btn btn-sm btn-default">Buscar</button>
                     </div>
 
                 </div>

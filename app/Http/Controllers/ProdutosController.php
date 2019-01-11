@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProdutosController extends Controller
 {
     public function index(){
-        $produtos = Produtos::all();
+        $produtos = Produtos::paginate(4);
 
         return view('produtos.index', compact('produtos'));
     }
@@ -31,6 +31,7 @@ class ProdutosController extends Controller
             'titulo.required' => 'O titulo é obrigatório',
             'descricao.required' => 'A descricao é obrigatório',
             'preco.required' => 'O preco é obrigatório',
+            'descricao.min' => 'A descrição tem que conter no mínimo 10 caracteres.'
 
         ]);
 
@@ -115,7 +116,7 @@ class ProdutosController extends Controller
 
         $produtos = Produtos::where('titulo', 'LIKE', '%'.$buscaInput.'%')
                             ->orwhere('descricao', 'LIKE', '%'.$buscaInput.'%')
-                            ->get();
+                            ->paginate(4);
 
         return view('produtos.index', compact('produtos', 'buscaInput'));
     }

@@ -49,4 +49,5 @@
             </div>
         @endforeach
     </div>
+    {{ $produtos->appends($_GET)->links() }}
 @endsection

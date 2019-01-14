@@ -11,17 +11,22 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function authenticate(Request $request){
+    public function login(Request $request){
 
-        $dados = $request->all();
+        $credenciais = [
+            'email' => $request['email'],
+            'password'  => $request['password']
+        ];
 
-        if (Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['password']])){
+        if (Auth::attempt($credenciais)){
             return redirect()->route('produtos.index');
         }else{
-            return redirect('login/index');
+            return redirect()->back()->with('msgerror', 'Usuário os senha inválidos');
         }
+    }
 
-
-
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login')->with('status', 'Deslogado com sucesso!');
     }
 }

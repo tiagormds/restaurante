@@ -1,8 +1,8 @@
 <?php
 
-Route::get('login/index', ['as'=>'login', 'uses'=>'LoginController@index']);
-Route::post('login', ['as'=>'login.authenticate', 'uses'=>'LoginController@authenticate']);
-
+Route::get('/login/index', ['as'=>'login', 'uses'=>'LoginController@index']);
+Route::post('/login', ['as'=>'login.auth', 'uses'=>'LoginController@login']);
+Route::get('/logout', ['as'=>'login.logout', 'uses'=>'LoginController@logout']);
 
 Route::group(['prefix'=>'/produtos', 'middleware'=>'auth'], function(){
     Route::get('/', ['as'=>'produtos.index', 'uses'=>'ProdutosController@index']);

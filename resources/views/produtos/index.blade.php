@@ -1,28 +1,25 @@
 @extends('layout.app')
 @section('title', 'Lista de Produtos')
 @section('content')
-    <h1>Produtos</h1>
 
     <div class="row" >
         <div class="col-md-12">
-            <form method="POST" action="{{ route('produtos.buscar') }}">
-                {{ csrf_field() }}
+                <form method="POST" action="{{ route('produtos.buscar') }}">
+                    {{ csrf_field() }}
 
-                <div class="input-group col-md-12">
-                    <div class="col-md-10">
-                        <input class="form-control" type="text" name="buscar" id="buscar"
-                               placeholder="Procurar Produto no site..." value=" @if(isset($buscaInput)) {{$buscaInput}} @endif">
+                    <div class="input-group col-md-12">
+                        <div class="col-md-10">
+                            <input class="form-control" type="text" name="buscar" id="buscar"
+                                   value=" @if(isset($buscaInput)) {{$buscaInput}} @else Digite para pesquisar os produto no site... @endif">
+                        </div>
+
+                        <div class="col-md-2">
+                            <button class="btn btn-sm btn-default">Buscar</button>
+                        </div>
+
                     </div>
-
-                    <div class="col-md-2">
-                        <button class="btn btn-sm btn-default">Buscar</button>
-                    </div>
-
-                </div>
-            </form>
-
+                </form>
         </div>
-
     </div>
 
     <div class="row">

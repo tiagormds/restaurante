@@ -1,7 +1,10 @@
 <?php
 
+Route::get('/login/index', ['as'=>'login', 'uses'=>'LoginController@index']);
+Route::post('/login', ['as'=>'login.auth', 'uses'=>'LoginController@login']);
+Route::get('/logout', ['as'=>'login.logout', 'uses'=>'LoginController@logout']);
 
-Route::group(['prefix'=>'/produtos'], function(){
+Route::group(['prefix'=>'/produtos', 'middleware'=>'auth'], function(){
     Route::get('/', ['as'=>'produtos.index', 'uses'=>'ProdutosController@index']);
     Route::get('/show/{id}', ['as'=>'produtos.show', 'uses'=>'ProdutosController@show']);
     Route::get('/create', ['as'=>'produtos.create', 'uses'=>'ProdutosController@create']);

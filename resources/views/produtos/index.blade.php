@@ -33,6 +33,10 @@
                          class="img-fluid img-thumbnail">
                 @endif
 
+
+                @guest
+                    <p class="text-info" ><a href="{{ route('login') }}">Faça o Login para ver as opções.</a></p>
+                @else
                 <div class="mb-3">
                     <form method="POST" action="{{ route('produtos.destroy', $produto->id) }}">
                         {{ csrf_field() }}
@@ -43,6 +47,7 @@
                     </form>
 
                 </div>
+                @endguest
             </div>
         @endforeach
     </div>
